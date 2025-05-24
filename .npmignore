@@ -2,8 +2,15 @@
 coverage/
 docs/
 scripts/
-test/
+tests/
 commitlint.config.cjs
 index.ts
 tsconfig.json
 web-test-runner.config.js
+.prettierrc
+.prettierignore
+.gitignore
+bin/
+.wireit
+.eslintcache
+eslint.config.js

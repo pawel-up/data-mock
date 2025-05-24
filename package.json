@@ -1,11 +1,11 @@
 {
   "name": "@pawel-up/data-mock",
   "description": "No-dependency, ESM, in browser data generator",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "type": "module",
-  "main": "build/index.js",
-  "module": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "build/src/index.js",
+  "module": "build/src/index.js",
+  "types": "build/src/index.d.ts",
   "license": "MIT",
   "keywords": [
     "generator"
@@ -25,57 +25,105 @@
     "url": "https://github.com/jarrodek/data-mock/issues",
     "email": "pawel.psztyc@gmail.com"
   },
+  "exports": {
+    ".": "./build/src/index.js",
+    "./package.json": "./package.json",
+    "./locales/*.js": "./build/src/locales/*.js",
+    "./locales/*": "./build/src/locales/*",
+    "./DataMock.js": "./build/src/DataMock.js",
+    "./types.js": "./build/src/Types.js",
+    "./Har.js": "./build/src/lib/Har.js",
+    "./Http.js": "./build/src/lib/Http.js",
+    "./Internet.js": "./build/src/lib/Internet.js",
+    "./Lorem.js": "./build/src/lib/Lorem.js",
+    "./Person.js": "./build/src/lib/Person.js",
+    "./Random.js": "./build/src/lib/Random.js",
+    "./Software.js": "./build/src/lib/Software.js",
+    "./Svg.js": "./build/src/lib/Svg.js",
+    "./Time.js": "./build/src/lib/Time.js",
+    "./Types.js": "./build/src/lib/Types.js",
+    "./Word.js": "./build/src/lib/Word.js",
+    "./http/FormData.js": "./build/src/lib/http/FormData.js",
+    "./http/Headers.js": "./build/src/lib/http/Headers.js",
+    "./http/Payload.js": "./build/src/lib/http/Payload.js",
+    "./http/Request.js": "./build/src/lib/http/Request.js",
+    "./http/Response.js": "./build/src/lib/http/Response.js"
+  },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/eslint-parser": "^7.14.7",
-    "@babel/preset-env": "^7.14.7",
-    "@commitlint/cli": "^17.0.2",
-    "@commitlint/config-conventional": "^17.0.2",
-    "@esm-bundle/chai": "^4.3.4-fix.0",
-    "@open-wc/testing": "^3.1.2",
-    "@types/chai": "^4.2.21",
-    "@typescript-eslint/eslint-plugin": "^5.16.0",
-    "@typescript-eslint/parser": "^5.16.0",
-    "@web/dev-server": "^0.1.17",
-    "@web/dev-server-esbuild": "^0.3.0",
-    "@web/test-runner": "^0.13.12",
-    "@web/test-runner-playwright": "^0.8.6",
-    "babel-eslint": "^10.1.0",
-    "concurrently": "^7.0.0",
-    "eslint": "^8.11.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-no-only-tests": "^2.6.0",
-    "eslint-plugin-unused-imports": "^2.0.0",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.1",
-    "sinon": "^14.0.0",
-    "typescript": "^4.3.4",
-    "typescript-lit-html-plugin": "^0.9.0"
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@eslint/js": "^9.25.0",
+    "@japa/assert": "^4.0.1",
+    "@japa/runner": "^4.2.0",
+    "@pawel-up/benchmark": "^1.0.1",
+    "@types/sinon": "^17.0.4",
+    "c8": "^10.1.3",
+    "eslint": "^9.25.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-no-only-tests": "^3.3.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "fast-xml-parser": "^5.2.3",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
+    "prettier": "^3.5.3",
+    "sinon": "^20.0.0",
+    "ts-node-maintained": "^10.9.5",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.30.1",
+    "wireit": "^0.14.12"
   },
   "dependencies": {
-    "@types/har-format": "^1.2.7"
+    "@types/har-format": "^1.2.16"
   },
   "scripts": {
-    "start": "web-dev-server --app-index demo/index.html --node-resolve --open --watch --root-dir .",
-    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
-    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
-    "lint:types": "tsc",
-    "lint": "npm run lint:eslint",
-    "format": "npm run format:eslint",
-    "test": "tsc && wtr --coverage --playwright --browsers chromium firefox webkit",
-    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "prepare": "husky install && npm run build"
+    "lint": "npm run lint:prettier && npm run lint:eslint",
+    "lint:eslint": "wireit",
+    "lint:prettier": "wireit",
+    "format": "npm run format:prettier && npm run format:prettier",
+    "format:prettier": "wireit",
+    "format:eslint": "wireit",
+    "test": "node --import ts-node-maintained/register/esm --enable-source-maps bin/test.ts",
+    "test:coverage": "c8 --reporter lcov --reporter text node --import ts-node-maintained/register/esm --enable-source-maps bin/test.ts",
+    "build": "npm run build:ts && npm run lint",
+    "build:ts": "wireit",
+    "prepare": "husky"
   },
-  "prettier": {
-    "singleQuote": true,
-    "arrowParens": "always",
-    "printWidth": 240,
-    "trailingComma": "all"
+  "wireit": {
+    "lint:eslint": {
+      "command": "eslint --color --cache --cache-location .eslintcache .",
+      "files": [
+        "src/**/*.ts",
+        "eslint.config.js"
+      ],
+      "output": []
+    },
+    "lint:prettier": {
+      "command": "prettier \"**/*.ts\" --check"
+    },
+    "format:eslint": {
+      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
+      "files": [
+        "src/**/*.ts",
+        "eslint.config.js"
+      ],
+      "output": []
+    },
+    "format:prettier": {
+      "command": "prettier \"**/*.ts\" --write"
+    },
+    "build:ts": {
+      "command": "tsc --project tsconfig.json",
+      "clean": "if-file-deleted",
+      "files": [
+        "src/**/*.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "build/**",
+        ".tsbuildinfo"
+      ]
+    }
   },
   "husky": {
     "hooks": {
@@ -83,7 +131,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.ts": [
       "eslint --fix"
     ]
   }

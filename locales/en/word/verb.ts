@@ -6056,4 +6056,4 @@ export default [
   'zip',
   'zone',
   'zoom',
-];
+]

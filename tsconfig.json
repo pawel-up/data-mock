@@ -1,29 +1,40 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "nodenext",
+    "lib": [
+      "ESNext", "DOM", "dom.iterable"
+    ],
+    "moduleResolution": "nodenext",
     "noEmitOnError": true,
-    "lib": ["ES2021", "DOM"],
-    "allowJs": true,
-    "checkJs": true,
     "strict": true,
+    "esModuleInterop": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
+    "noImplicitOverride": true,
     "alwaysStrict": true,
-    "esModuleInterop": true,
     "sourceMap": true,
-    "declaration": true,
+    "inlineSources": true,
     "outDir": "./build",
-    "skipLibCheck": true,
+    "rootDir": "./.",
+    "baseUrl": ".",
     "forceConsistentCasingInFileNames": true,
-    "importHelpers": false
+    "importHelpers": false,
+    "declaration": true,
+    "declarationMap": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "incremental": true,
   },
   "include": [
     "src/**/*.ts", 
-    "locales/**/*.ts", 
-    // "test/**/*.ts", 
-    "index.ts"
+    "locales/**/*.ts",
+    "src/index.ts"
   ],
-  "exclude": []
+  "exclude": [],
+  "ts-node": {
+    "experimentalSpecifierResolution": "node",
+    "transpileOnly": true,
+    "esm": true,
+  }
 }

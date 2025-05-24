@@ -1,121 +1,121 @@
-import { DataMockLocale } from "../locales/Types.js";
+import { DataMockLocale } from '../locales/Types.js'
 
 export interface IDataMockInit {
   /**
    * The locale to use. By default it loads the `en` locale.
    */
-  locale?: DataMockLocale;
-  seed?: number;
+  locale?: DataMockLocale
+  seed?: number
 }
 
 export interface ITypeNumberInit {
   /**
    * The minimal value to generate (inclusive).
    */
-  min?: number;
+  min?: number
   /**
    * The maximal value to generate (inclusive).
    */
-  max?: number;
+  max?: number
   /**
    * The precision of the generated number.
    */
-  precision?: number;
+  precision?: number
 }
 
 export interface ITypeDateTimeInit {
   /**
    * The minimal timestamp to generate (inclusive).
    */
-  min?: number;
+  min?: number
   /**
    * The maximal timestamp to generate (inclusive).
    */
-  max?: number;
+  max?: number
 }
 
 export interface ITypeBooleanInit {
   /**
    * The likelihood of receiving a true or false value back.
    */
-  likelihood?: number;
+  likelihood?: number
 }
 
-export interface ITypeFalsyInit {
+export interface ITypeFalsyInit<T = unknown> {
   /**
    * The pool of falsy values to pick from.
    */
-  pool?: any[];
+  pool?: T[]
 }
 
 export interface ITypeCharacterInit {
   /**
    * The casing of the character.
    */
-  casing?: 'lower' | 'upper';
+  casing?: 'lower' | 'upper'
   /**
    * The pool of characters to pick from. When set it ignores `alpha`, `numeric`, and `symbols`.
    */
-  pool?: string;
+  pool?: string
   /**
    * Whether to include alpha characters in the pool.
    */
-  alpha?: boolean;
+  alpha?: boolean
   /**
    * Whether to include numeric characters in the pool.
    */
-  numeric?: boolean;
+  numeric?: boolean
   /**
    * Whether to include symbol characters in the pool.
    */
-  symbols?: boolean;
+  symbols?: boolean
 }
 
 export interface ITypeHashInit {
   /**
    * The casing of the character.
    */
-  casing?: 'lower' | 'upper';
+  casing?: 'lower' | 'upper'
   /**
    * The number of characters in the hash.
    */
-  length?: number;
+  length?: number
 }
 
-export class Range {
-  min?: number;
-  max?: number;
+export interface Range {
+  min?: number
+  max?: number
 }
 
 export interface ITypeVersionInit {
   /**
-   * The format of the version string. 
+   * The format of the version string.
    * @default symVer
    */
-  format?: 'symVer' | 'major' | 'majorMinor';
+  format?: 'symVer' | 'major' | 'majorMinor'
   /**
    * The range of the major version or the value to use.
    */
-  major?: Range|number;
+  major?: Range | number
   /**
    * The range of the minor version or the value to use.
    */
-  minor?: Range|number;
+  minor?: Range | number
   /**
    * The range of the patch version or the value to use.
    */
-  patch?: Range|number;
+  patch?: Range | number
 }
 
 export interface ILoremSyllableInit {
   /**
    * The number of characters in the word.
    */
-  length?: number;
+  length?: number
   /**
    * Whether to capitalize the text.
    */
-  capitalize?: boolean;
+  capitalize?: boolean
 }
 
 export interface ILoremWordInit extends ILoremSyllableInit {
@@ -123,281 +123,280 @@ export interface ILoremWordInit extends ILoremSyllableInit {
    * The number of syllables in the word.
    * Cannot be combined with `length`.
    */
-  syllables?: number;
+  syllables?: number
 }
 
 export interface ILoremSentenceInit {
   /**
    * The number of words in the sentence.
    */
-  words?: number;
+  words?: number
   /**
    * The punctuation mark at the end of the sentence.
    * When set to `false` it does not add the punctuation mark.
    */
-  punctuation?: string | boolean;
+  punctuation?: string | boolean
 }
 
 export interface ILoremSentencesInit {
   /**
    * The number of sentences in the result.
    */
-  size?: number;
+  size?: number
 }
 
 export interface ILoremParagraphInit {
   /**
    * The number of sentences in the result.
    */
-  sentences?: number;
+  sentences?: number
   /**
    * Whether to separate the sentences with a line break or a space.
    * Default to space.
    */
-  lineBreak?: boolean;
+  lineBreak?: boolean
 }
 
 export interface ILoremParagraphsInit {
   /**
    * The number of paragraph in the result.
    */
-  size?: number;
+  size?: number
   /**
    * The separator to use. Default to `\r\n`.
    */
-  separator?: string;
+  separator?: string
 }
 
 export interface ITimeHourInit {
   /**
    * Whether to use 24hr clock.
    */
-  twentyFour?: boolean;
+  twentyFour?: boolean
   /**
    * The minimum hour
    */
-  min?: number;
+  min?: number
   /**
    * The maximum hour
    */
-  max?: number;
+  max?: number
 }
 
 export interface ITimeMinuteInit {
   /**
    * The minimum minute
    */
-  min?: number;
+  min?: number
   /**
    * The maximum minute
    */
-  max?: number;
+  max?: number
 }
 
 export interface ITimeMonthInit {
   /**
    * The minimum month, 1-based [1, 12]
    */
-  min?: number;
+  min?: number
   /**
    * The maximum month, 1-based [1, 12]
    */
-  max?: number;
+  max?: number
 }
 
 export interface ITimeMonthNameInit extends ITimeMonthInit {
   /**
    * Whether to returns abbreviation rather than the full name.
    */
-  abbr?: boolean;
+  abbr?: boolean
 }
 
 export interface ITimeWeekdayInit {
   /**
    * The minimum day, 1-based [1, 7]
    */
-  min?: number;
+  min?: number
   /**
    * The maximum day, 1-based [1, 7]
    */
-  max?: number;
+  max?: number
 }
 
 export interface ITimeWeekdayNameInit extends ITimeWeekdayInit {
   /**
    * Whether to returns abbreviation rather than the full name.
    */
-  abbr?: boolean;
+  abbr?: boolean
 }
 
-export interface IInternetUsernameInit extends IPersonName {
-
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface IInternetUsernameInit extends IPersonName {}
 
 export interface IInternetEmailInit extends IInternetUsernameInit {
-
   /**
    * Provider name.
    */
-  provider?: string;
+  provider?: string
 }
 
 export interface IPersonName {
   /**
    * User's first name
    */
-  firstName?: string;
+  firstName?: string
   /**
    * User's last name
    */
-  lastName?: string;
+  lastName?: string
 }
 
 export interface IPersonNameInit extends IPersonName {
-  gender?: Gender;
+  gender?: Gender
 }
 
-export type Gender = 'male' | 'female';
+export type Gender = 'male' | 'female'
 
 export interface IHttpPayloadInit {
   /**
    * If set the request will not have payload
    */
-  noPayload?: boolean;
+  noPayload?: boolean
   /**
    * The request always has a payload. The `noPayload` property takes precedence over this setting.
    */
-  force?: boolean;
+  force?: boolean
   /**
    * The content type to generate the body for.
    * Has no effect when `noPayload` is set.
    */
-  contentType?: string;
+  contentType?: string
 }
 
 export interface IHttpOperationInit {
   /**
    * The list of operations to list from.
    */
-  pool?: string[];
+  pool?: string[]
   /**
    * When set it will pick operation name from the pool of operations that can carry a payload or not.
    * When not sat at all it will pick a random operation.
    */
-  withPayload?: boolean;
+  withPayload?: boolean
   /**
    * When set it returns this value as the operation name (HTTP method).
    */
-  operation?: string;
+  operation?: string
 }
 
-export interface IHttpHeadersInit { 
+export interface IHttpHeadersInit {
   /**
    * THe pool of header names to use.
    */
-  pool?: string[];
+  pool?: string[]
   /**
    * The number of headers to generate. Do not mix with `min` and `max`.
    */
-  length?: number;
+  length?: number
   /**
    * The minimal number of headers.
    * @default 0
    */
-  min?: number;
+  min?: number
   /**
    * The maximum number of headers.
    * @default 10
    */
-  max?: number;
+  max?: number
   /**
    * The content type value to add.
    */
-  mime?: string;
+  mime?: string
   /**
    * The name of the headers group to include.
    */
-  group?: 'general' | 'caching' | 'conditional' | 'content' | 'cookies' | 'cors';
+  group?: 'general' | 'caching' | 'conditional' | 'content' | 'cookies' | 'cors'
   /**
-   * The list of headers may contain a header with the generated multiple values. Each value counts towards the size limit.
+   * The list of headers may contain a header with the generated multiple values.
+   * Each value counts towards the size limit.
    * When this is set this generates the unique number of headers with single values.
    * This does not apply to some content related headers which always have single values.
    */
-  noMulti?: boolean;
+  noMulti?: boolean
 }
 
 export interface IHttpRequestInit {
-  headers?: IHttpHeadersInit;
-  payload?: IHttpPayloadInit;
-  method?: IHttpOperationInit;
+  headers?: IHttpHeadersInit
+  payload?: IHttpPayloadInit
+  method?: IHttpOperationInit
 }
 
 export interface IHttpRequest {
   /**
    * The generated request URL.
    */
-  url: string;
+  url: string
   /**
    * The generated request method.
    */
-  method: string;
+  method: string
   /**
    * The generated list of HTTP headers.
    */
-  headers?: string;
+  headers?: string
   /**
    * The generated request message.
    */
-  payload?: string;
+  payload?: string
 }
 
 export interface IHarTiming {
-  blocked: number;
-  connect: number;
-  receive: number;
-  send: number;
-  wait: number;
-  dns: number;
-  ssl?: number;
+  blocked: number
+  connect: number
+  receive: number
+  send: number
+  wait: number
+  dns: number
+  ssl?: number
 }
 
 export interface IHarTimingInit {
-  ssl?: boolean;
+  ssl?: boolean
 }
 
 export interface IHttpResponseInit {
-  statusGroup?: number;
-  headers?: IHttpHeadersInit;
-  payload?: IHttpPayloadInit;
+  statusGroup?: number
+  headers?: IHttpHeadersInit
+  payload?: IHttpPayloadInit
 }
 
-export interface IHttpResponseData {
-  status: number;
-  statusText: string;
-  headers: string;
-  payload?: any;
+export interface IHttpResponseData<T = unknown> {
+  status: number
+  statusText: string
+  headers: string
+  payload?: T
 }
 
 export interface IHttpResponseRedirectStatusInit {
   /**
    * The redirection code. Otherwise a random pick is used
    */
-  code?: number;
+  code?: number
   /**
    * The status message to use.
    */
-  status?: string;
+  status?: string
 }
 
 export interface IHttpResponseStatusResult {
   /**
    * The redirection code.
    */
-  code: number;
+  code: number
   /**
    * The status message.
    */
-  status: string;
+  status: string
 }
 
 export interface ISvgShapeInit {
@@ -405,12 +404,12 @@ export interface ISvgShapeInit {
    * Shapes stroke.
    * @default to 2.
    */
-  stroke?: number;
+  stroke?: number
   /**
    * The image opacity.
    * @default 1.0
    */
-  opacity?: number;
+  opacity?: number
 }
 
 export interface ISvgImageInit extends ISvgShapeInit {
@@ -418,51 +417,51 @@ export interface ISvgImageInit extends ISvgShapeInit {
    * The image width.
    * @default to 256.
    */
-  width?: number;
+  width?: number
   /**
    * The image height.
    * @default to 256.
    */
-  height?: number;
+  height?: number
   /**
    * The number of shapes to generate.
    * When this is set then the `maxShapes` is ignored.
    */
-  shapes?: number;
+  shapes?: number
   /**
    * When `shapes` is not set then this is used to generate a random
    * value of shapes between 1 and `maxShapes`.
    * @default 16
    */
-  maxShapes?: number;
+  maxShapes?: number
 }
 
 export interface IFormDataTextPartInit {
   /**
    * The mime type of the text part when adding a text part.
    */
-  textMime?: string;
+  textMime?: string
   /**
    * Makes sure the generated text part is always a text.
    * This also ignores the `textMime` value.
    */
-  clearText?: boolean;
+  clearText?: boolean
 }
 
 export interface IFormDataPartInit extends IFormDataTextPartInit {
   /**
    * Whether all parts are File parts
    */
-  filePart?: boolean;
+  filePart?: boolean
   /**
    * Whether all parts are Text parts
    */
-  textPart?: boolean;
+  textPart?: boolean
 }
 
 export interface IFormDataInit extends IFormDataPartInit {
   /**
    * The number of pars to add to the form.
    */
-  parts?: number;
+  parts?: number
 }

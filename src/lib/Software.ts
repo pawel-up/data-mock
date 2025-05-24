@@ -1,36 +1,40 @@
-import { Random } from "./Random.js";
-import { Types } from "./Types.js";
-import { IDataMockInit, ITypeVersionInit } from '../Types.js';
+import { Random } from './Random.js'
+import { Types } from './Types.js'
+import { IDataMockInit, ITypeVersionInit } from '../Types.js'
 
-export const typesValue = Symbol('typesValue');
-export const randomValue = Symbol('randomValue');
+export const typesValue = Symbol('typesValue')
+export const randomValue = Symbol('randomValue')
 
 export class Software {
   [typesValue]: Types;
-  [randomValue]: Random;
+  [randomValue]: Random
   /**
    * @param init The library init options.
    */
-  constructor(init: IDataMockInit={}) {
-    this[typesValue] = new Types(init.seed);
-    this[randomValue] = new Random(init.seed);
+  constructor(init: IDataMockInit = {}) {
+    this[typesValue] = new Types(init.seed)
+    this[randomValue] = new Random(init.seed)
   }
 
   seed(value?: number): void {
-    this[typesValue].seed(value);
-    this[randomValue].seed(value);
+    this[typesValue].seed(value)
+    this[randomValue].seed(value)
   }
 
   /**
    * @returns The version name.
    */
   version(init: ITypeVersionInit = {}): string {
-    const { format='symVer' } = init;
+    const { format = 'symVer' } = init
     switch (format) {
-      case 'symVer': return this.symVersion(init);
-      case 'major': return this.majorVersion(init);
-      case 'majorMinor': return this.majorMinorVersion(init);
-      default: throw new RangeError(`Invalid version format: ${format}`);
+      case 'symVer':
+        return this.symVersion(init)
+      case 'major':
+        return this.majorVersion(init)
+      case 'majorMinor':
+        return this.majorMinorVersion(init)
+      default:
+        throw new RangeError(`Invalid version format: ${format}`)
     }
   }
 
@@ -38,56 +42,56 @@ export class Software {
    * @returns Semantic versioning version name.
    */
   symVersion(init: ITypeVersionInit = {}): string {
-    const { patch={} } = init;
-    const result = this.majorMinorVersion(init);
-    let patchValue: number;
+    const { patch = {} } = init
+    const result = this.majorMinorVersion(init)
+    let patchValue: number
     if (typeof patch === 'number') {
-      patchValue = patch;
+      patchValue = patch
     } else {
-      const { min=0, max=100 } = patch;
-      patchValue = this[typesValue].number({ min, max });
+      const { min = 0, max = 100 } = patch
+      patchValue = this[typesValue].number({ min, max })
     }
-    return `${result}.${patchValue}`;
+    return `${result}.${patchValue}`
   }
 
   /**
    * @returns Major and minor only version name.
    */
   majorMinorVersion(init: ITypeVersionInit = {}): string {
-    const { minor={} } = init;
-    let minorValue: number;
+    const { minor = {} } = init
+    let minorValue: number
     if (typeof minor === 'number') {
-      minorValue = minor;
+      minorValue = minor
     } else {
-      const { min=0, max=100 } = minor;
-      minorValue = this[typesValue].number({ min, max });
+      const { min = 0, max = 100 } = minor
+      minorValue = this[typesValue].number({ min, max })
     }
-    const major = this.majorVersion(init);
-    return `${major}.${minorValue}`;
+    const major = this.majorVersion(init)
+    return `${major}.${minorValue}`
   }
 
   /**
    * @returns Major only version name.
    */
   majorVersion(init: ITypeVersionInit = {}): string {
-    const { major={} } = init;
-    let majorValue: number;
+    const { major = {} } = init
+    let majorValue: number
     if (typeof major === 'number') {
-      majorValue = major;
+      majorValue = major
     } else {
-      const { min=0, max=100 } = major;
-      majorValue = this[typesValue].number({ min, max });
+      const { min = 0, max = 100 } = major
+      majorValue = this[typesValue].number({ min, max })
     }
-    return `${majorValue}`;
+    return `${majorValue}`
   }
 
   /**
    * @returns The pre-release version name.
    */
   preVersion(init: ITypeVersionInit = {}): string {
-    const version = this.version(init);
-    const suffixes = ['pre', 'alpha', 'beta', 'dev'];
-    const suffix = this[randomValue].pickOne(suffixes);
-    return `${version}-${suffix}`;
+    const version = this.version(init)
+    const suffixes = ['pre', 'alpha', 'beta', 'dev']
+    const suffix = this[randomValue].pickOne(suffixes)
+    return `${version}-${suffix}`
   }
 }
