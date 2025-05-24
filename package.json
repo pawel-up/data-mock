@@ -1,7 +1,7 @@
 {
   "name": "@pawel-up/data-mock",
   "description": "No-dependency, ESM, in browser data generator",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "type": "module",
   "main": "build/src/index.js",
   "module": "build/src/index.js",
@@ -28,8 +28,8 @@
   "exports": {
     ".": "./build/src/index.js",
     "./package.json": "./package.json",
-    "./locales/*.js": "./build/src/locales/*.js",
-    "./locales/*": "./build/src/locales/*",
+    "./locales/*.js": "./build/locales/*.js",
+    "./locales/*": "./build/locales/*",
     "./DataMock.js": "./build/src/DataMock.js",
     "./types.js": "./build/src/Types.js",
     "./Har.js": "./build/src/lib/Har.js",
