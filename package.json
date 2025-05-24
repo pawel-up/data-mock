@@ -1,7 +1,7 @@
 {
   "name": "@pawel-up/data-mock",
   "description": "No-dependency, ESM, in browser data generator",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "type": "module",
   "main": "build/src/index.js",
   "module": "build/src/index.js",
@@ -42,6 +42,7 @@
     "./Svg.js": "./build/src/lib/Svg.js",
     "./Time.js": "./build/src/lib/Time.js",
     "./Types.js": "./build/src/lib/Types.js",
+    "./Utils.js": "./build/src/lib/Utils.js",
     "./Word.js": "./build/src/lib/Word.js",
     "./http/FormData.js": "./build/src/lib/http/FormData.js",
     "./http/Headers.js": "./build/src/lib/http/Headers.js",
