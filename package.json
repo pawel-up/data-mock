@@ -19,10 +19,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jarrodek/data-mock.git"
+    "url": "git://github.com/pawel-up/data-mock.git"
   },
   "bugs": {
-    "url": "https://github.com/jarrodek/data-mock/issues",
+    "url": "https://github.com/pawel-up/data-mock/issues",
     "email": "pawel.psztyc@gmail.com"
   },
   "exports": {
