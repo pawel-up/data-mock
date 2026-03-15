@@ -63,7 +63,7 @@ export class Svg {
   shape(maxWidth: number, maxHeight: number, init: ISvgShapeInit = {}): string {
     const { opacity = 1, stroke = 2 } = init
     const type = this._types.number({ min: 0, max: 3 })
-    let result = ''
+    let result: string
 
     if (type === 0) {
       const width = this._types.number({ min: 1, max: maxWidth / 2 })

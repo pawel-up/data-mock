@@ -9,6 +9,7 @@ import { Word } from './lib/Word.js'
 import Http from './lib/Http.js'
 import { Software } from './lib/Software.js'
 import { Svg } from './lib/Svg.js'
+import { RegExp } from './lib/RegExp.js'
 import { IDataMockInit } from './Types.js'
 import { DataMockLocale } from '../locales/Types.js'
 
@@ -66,6 +67,11 @@ export class DataMock {
   svg: Svg
 
   /**
+   * RegExp random string generator.
+   */
+  regexp: RegExp
+
+  /**
    * @param init The library init options.
    */
   constructor(init: IDataMockInit = {}) {
@@ -80,6 +86,7 @@ export class DataMock {
     this.http = new Http({ ...init, locale: this[localeValue] })
     this.software = new Software({ ...init, locale: this[localeValue] })
     this.svg = new Svg({ ...init, locale: this[localeValue] })
+    this.regexp = new RegExp({ ...init, locale: this[localeValue] })
   }
 
   seed(value?: number): void {
@@ -93,6 +100,7 @@ export class DataMock {
     this.http.seed(value)
     this.software.seed(value)
     this.svg.seed(value)
+    this.regexp.seed(value)
   }
 
   /**

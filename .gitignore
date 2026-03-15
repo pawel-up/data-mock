@@ -57,5 +57,4 @@ $RECYCLE.BIN/
 node_modules
 coverage
 build
-.wireit
 .eslintcache

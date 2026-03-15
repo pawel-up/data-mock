@@ -11,6 +11,5 @@ web-test-runner.config.js
 .prettierignore
 .gitignore
 bin/
-.wireit
 .eslintcache
 eslint.config.js

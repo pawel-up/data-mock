@@ -58,11 +58,6 @@ export function float(mt: MersenneTwister, init: number | ITypeNumberInit = {}):
  * @returns The generated random string
  */
 export function string(mt: MersenneTwister, size = 10, chars?: string): string {
-  let len = size
-  const max = 2 ** 20
-  if (len >= max) {
-    len = max
-  }
   const pool = typeof chars === 'string' ? chars : CHARS_UPPER + CHARS_LOWER
   const numberInit = {
     min: 0,
