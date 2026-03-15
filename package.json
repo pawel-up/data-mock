@@ -1,7 +1,7 @@
 {
   "name": "@pawel-up/data-mock",
   "description": "No-dependency, ESM, in browser data generator",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "type": "module",
   "main": "build/src/index.js",
   "module": "build/src/index.js",
